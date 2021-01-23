@@ -6,14 +6,13 @@ const Product = require('../database/schema.js');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/product/:productId', express.static(path.join(__dirname, '../dist')));
 
-app.get('/product/', (req, res) => {
-  // eslint-disable-next-line prefer-const
-  let random = Math.floor(Math.random() * 100);
-  Product.findOne().skip(random).exec((err, data) => {
+app.get('/api/product/:productId', (req, res) => {
+  const productNum = req.params.productId;
+  Product.findOne({ productNumber: productNum }).exec((err, data) => {
     if (err) {
-      res.status(404).send();
+      res.status(404).end();
     } else {
       res.status(200).send(data);
     }
@@ -23,3 +22,5 @@ app.get('/product/', (req, res) => {
 app.listen(3001, () => {
   console.log('listening at port 3001');
 });
+
+module.exports = app;
