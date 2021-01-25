@@ -11,13 +11,33 @@ const Specs = ({ specs }) => {
   const dimensionStr = `${dimensions.join('x')} inches`;
   const weightStr = `${weight[0]} lbs. ${weight[1]} oz.`;
   return (
-    <div>
+    <div className="specs">
       <h2>Technical specs</h2>
       <ul>
-        <li>{dimensionStr}</li>
-        <li>{weightStr}</li>
-        <li>{bestUse}</li>
-        <li>{materials}</li>
+        <li className="darker">
+          <span className="bolded">
+            Best Use&nbsp;
+          </span>
+          {bestUse}
+        </li>
+        <li>
+          <span className="bolded">
+            Material(s)&nbsp;
+          </span>
+          {materials}
+        </li>
+        <li className="darker">
+          <span className="bolded">
+            Dimensions&nbsp;
+          </span>
+          {dimensionStr}
+        </li>
+        <li>
+          <span className="bolded">
+            Weight&nbsp;
+          </span>
+          {weightStr}
+        </li>
       </ul>
     </div>
   );
